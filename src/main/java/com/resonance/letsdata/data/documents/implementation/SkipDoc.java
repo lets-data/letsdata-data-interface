@@ -178,4 +178,9 @@ public class SkipDoc implements SkipDocInterface {
                 ", partitionKey='" + partitionKey + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean isSingleDoc() {
+        return true;
+    }
 }

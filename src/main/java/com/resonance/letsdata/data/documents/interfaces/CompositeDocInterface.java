@@ -2,6 +2,7 @@ package com.resonance.letsdata.data.documents.interfaces;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *  Composite Documents are documents created by Single File State Machine reader and Multiple File State machine readers where they output a document from multiple single document inputs.
@@ -31,8 +32,8 @@ import java.util.List;
 public interface CompositeDocInterface extends DocumentInterface {
     /**
      * Since a composite doc is created from multiple single docs, it is possible that there are partial errors in some of the single docs.
-     * This method returns a linked hashmap of single docs and the errors when constructing a composite doc
+     * This method returns an entry of the document we want persisted and the list of the individual error records
      * @return
      */
-    LinkedHashMap<SingleDocInterface, List<ErrorDocInterface>> getDocumentList();
+    Map.Entry<SingleDocInterface, List<ErrorDocInterface>> getDocumentList();
 }

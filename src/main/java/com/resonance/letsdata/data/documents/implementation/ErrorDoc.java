@@ -176,4 +176,9 @@ public class ErrorDoc implements ErrorDocInterface {
                 ", partitionKey='" + partitionKey + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean isSingleDoc() {
+        return true;
+    }
 }

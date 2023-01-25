@@ -3,12 +3,12 @@ package com.resonance.letsdata.data.documents.interfaces;
 import java.util.Map;
 
 /**
- * The "SkipDocInterface" extends the "DocumentInterface" is the base interface for any skip documents that are returned by the user handlers.
+ * The "SkipDocInterface" extends the "SingleDocInterface" is the base interface for any skip documents that are returned by the user handlers.
  * A skip document is returned when the processor determines that the record from the file is not of interest to the current processor and should be skipped from being written to the write destination.
  * A default implementation for the interface is provided at "com.resonance.letsdata.data.documents.implementation.SkipDoc" which is used by default.
  * Customers can return skip records from handlers using this default implementation or write their own Skip docs and return these during processing.
  */
-public interface SkipDocInterface extends DocumentInterface {
+public interface SkipDocInterface extends SingleDocInterface {
     /**
      * The skip record start offset (in bytes) of the error record in the files by file types
      * For 'Single File' and 'Single File State Machine' readers, there would be a single file type in the return map.

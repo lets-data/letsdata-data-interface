@@ -3,11 +3,11 @@ package com.resonance.letsdata.data.documents.interfaces;
 import java.util.Map;
 
 /**
- * The "ErrorDocInterface" extends the "DocumentInterface" is the base interface for any error documents that are returned by the user handlers.
+ * The "ErrorDocInterface" extends the "SingleDocInterface" is the base interface for any error documents that are returned by the user handlers.
  * A default implementation for the interface is provided at "com.resonance.letsdata.data.documents.implementation.ErrorDoc" which is used by default.
  * Customers can return errors from handlers using this default implementation or write their own Error docs and return these during processing.
  */
-public interface ErrorDocInterface extends DocumentInterface {
+public interface ErrorDocInterface extends SingleDocInterface {
     /**
      * The erroneous record start offset (in bytes) of the error record in the files by file types
      * For 'Single File' and 'Single File State Machine' readers, there would be a single file type in the return map.
