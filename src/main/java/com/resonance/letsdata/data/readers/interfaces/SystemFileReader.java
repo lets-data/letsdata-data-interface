@@ -8,7 +8,8 @@ import java.util.Map;
 public interface SystemFileReader {
     DocumentInterface nextRecord(boolean peek) throws Exception;
     SingleFileReaderState getState();
-    Map<String, Long> getOffset();
-    Map<String, String> getFileTypeFileNameMap();
-    Map<String, String> getLastRecordTypeMap();
+    Long getOffsetBytes();
+    String getFileType();
+    String getFileName();
+    String getLastRecordType();
 }
