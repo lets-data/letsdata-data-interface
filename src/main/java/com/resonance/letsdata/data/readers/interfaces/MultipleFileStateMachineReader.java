@@ -418,7 +418,7 @@ public interface MultipleFileStateMachineReader {
      *                  Map&lt;String, String&gt; nextExpectedRecordType = this.getNextExpectedRecordType(lastExpectedRecordType);
      *
      *                  // create the offset map
-     *                  Map&lt;String, Long&gt; s3FileTypeOffsetMap = new HashMap&lt;&gt;();
+     *                  Map&lt;String, String&gt; s3FileTypeOffsetMap = new HashMap&lt;&gt;();
      *                  s3FileTypeOffsetMap.putAll(metadataLogFileReader.getOffset());
      *                  s3FileTypeOffsetMap.putAll(dataLogFileReader.getOffset());
      *

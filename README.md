@@ -125,10 +125,10 @@ Here is an example implementation:
            int errorLevelIndex = Matcher.match(byteArr, startIndex, endIndex, "\"lvl\":\"ERROR\"");
            if (errorLevelIndex == -1) {
                // skip since we are interested only in ERROR records
-               Map<String, Long> startOffset = new HashMap<>();
-               startOffset.put(s3FileType, offsetBytes);
-               Map<String, Long> endOffset = new HashMap<>();
-               endOffset.put(s3FileType, offsetBytes+(endIndex-startIndex));
+               Map<String, String> startOffset = new HashMap<>();
+               startOffset.put(s3FileType, Long.toString(offsetBytes));
+               Map<String, String> endOffset = new HashMap<>();
+               endOffset.put(s3FileType, Long.toString(offsetBytes+(endIndex-startIndex)));
                String errorMessage = "skipping message - level is not ERROR";
                String documentId = null;
                String recordType = null;
@@ -149,10 +149,10 @@ Here is an example implementation:
                    return new ParseDocumentResult(nextRecordType, doc, ParseDocumentResultStatus.SUCCESS);
                 } catch (Exception e) {
                    logger.error("error processing json document from file", s3FileType, s3Filename, offsetBytes, e);
-                   Map<String, Long> startOffset = new HashMap<>();
-                   startOffset.put(s3FileType, offsetBytes);
-                   Map<String, Long> endOffset = new HashMap<>();
-                   endOffset.put(s3FileType, offsetBytes+(endIndex-startIndex));
+                   Map<String, String> startOffset = new HashMap<>();
+                   startOffset.put(s3FileType, Long.toString(offsetBytes));
+                   Map<String, String> endOffset = new HashMap<>();
+                   endOffset.put(s3FileType, Long.toString(offsetBytes+(endIndex-startIndex)));
                    String errorMessage = "error processing json document from file - ex: "+e;
                    String documentId = null;
                    String recordType = null;
@@ -317,10 +317,10 @@ The records in each file follow the following state machine - this state machine
                             logger.error("Exception in parseDocument for METADATA record - recordType: "+nextRecordType+", ex: "+exception);
 
                             String nextRecordTypeForExtractedRecord = getNextExpectedRecordType(s3FileType, nextRecordType);
-                            Map<String, Long> startOffset = new HashMap<>();
-                            startOffset.put(s3FileType, offsetBytes);
-                            Map<String, Long> endOffset = new HashMap<>();
-                            endOffset.put(s3FileType, offsetBytes+(endIndex-startIndex));
+                            Map<String, String> startOffset = new HashMap<>();
+                            startOffset.put(s3FileType, Long.toString(offsetBytes));
+                            Map<String, String> endOffset = new HashMap<>();
+                            endOffset.put(s3FileType, Long.toString(offsetBytes+(endIndex-startIndex)));
                             String errorMessage = "Exception in parseDocument for METADATA record - recordType: "+nextRecordType+", ex: "+exception;
                             String documentId = null;
                             String recordType = null;
@@ -339,10 +339,10 @@ The records in each file follow the following state machine - this state machine
                             logger.error("Exception in parseDocument for DATA record - recordType: "+nextRecordType+", ex: "+exception);
 
                             String nextRecordTypeForExtractedRecord = getNextExpectedRecordType(s3FileType, nextRecordType);
-                            Map<String, Long> startOffset = new HashMap<>();
-                            startOffset.put(s3FileType, offsetBytes);
-                            Map<String, Long> endOffset = new HashMap<>();
-                            endOffset.put(s3FileType, offsetBytes+(endIndex-startIndex));
+                            Map<String, String> startOffset = new HashMap<>();
+                            startOffset.put(s3FileType, Long.toString(offsetBytes));
+                            Map<String, String> endOffset = new HashMap<>();
+                            endOffset.put(s3FileType, Long.toString(offsetBytes+(endIndex-startIndex)));
                             String errorMessage = "Exception in parseDocument for DATA record - recordType: "+nextRecordType+", ex: "+exception;
                             String documentId = null;
                             String recordType = null;
@@ -488,7 +488,7 @@ The SingleFileStateMachineReader implements the logic to combine each {metadata,
                 Map<String, String> s3FileTypeNextRecordTypeMap = new HashMap<>();
                 s3FileTypeNextRecordTypeMap.put(s3FileType, null);
 
-                Map<String, Long> s3FileTypeOffsetMap = new HashMap<>();
+                Map<String, String> s3FileTypeOffsetMap = new HashMap<>();
                 s3FileTypeOffsetMap.putAll(fileReader.getOffset());
 
                 Map<String, String> lastProcessedRecordTypeMap = fileReader.getLastRecordTypeMap();
@@ -530,7 +530,7 @@ The SingleFileStateMachineReader implements the logic to combine each {metadata,
                 Map<String, String> lastProcessedRecordTypeMap = fileReader.getLastRecordTypeMap();
                 Map<String, String> nextRecordTypeMap = fileReader.getNextExpectedRecordType(s3FileType, lastProcessedRecordTypeMap.get(s3FileType));
 
-                Map<String, Long> s3FileTypeOffsetMap = new HashMap<>();
+                Map<String, String> s3FileTypeOffsetMap = new HashMap<>();
                 s3FileTypeOffsetMap.putAll(fileReader.getOffset());
 
                 LinkedHashMap<SingleDocInterface, List<ErrorDocInterface>> docMap = new LinkedHashMap<>();
@@ -556,7 +556,7 @@ The SingleFileStateMachineReader implements the logic to combine each {metadata,
             Map<String, String> lastProcessedRecordTypeMap = fileReader.getLastRecordTypeMap();
             Map<String, String> nextRecordTypeMap = fileReader.getNextExpectedRecordType(s3FileType, lastProcessedRecordTypeMap.get(s3FileType));
 
-            Map<String, Long> s3FileTypeOffsetMap = new HashMap<>();
+            Map<String, String> s3FileTypeOffsetMap = new HashMap<>();
             s3FileTypeOffsetMap.putAll(fileReader.getOffset());
             return new ParseCompositeDocumentResult(nextRecordTypeMap, compositeDoc, lastProcessedRecordTypeMap, s3FileTypeOffsetMap, SingleFileReaderState.PROCESSING, ParseDocumentResultStatus.SUCCESS);
         }
@@ -754,7 +754,7 @@ Here is a sample MultipleFileStateMachineReader implementation - the SingleFileP
                     s3FileTypeNextRecordTypeMap.put("METADATALOGFILE", null);
                     s3FileTypeNextRecordTypeMap.put("DATALOGFILE", null);
 
-                    Map<String, Long> s3FileTypeOffsetMap = new HashMap<>();
+                    Map<String, String> s3FileTypeOffsetMap = new HashMap<>();
                     s3FileTypeOffsetMap.putAll(metadataLogFileReader.getOffset());
                     s3FileTypeOffsetMap.putAll(dataLogFileReader.getOffset());
 
@@ -797,7 +797,7 @@ Here is a sample MultipleFileStateMachineReader implementation - the SingleFileP
                     s3FileTypeNextRecordTypeMap.putAll(metadataLogFileReader.getNextExpectedRecordType("METADATALOGFILE", lastProcessedRecordTypeMap.get("METADATALOGFILE")));
                     s3FileTypeNextRecordTypeMap.putAll(dataLogFileReader.getNextExpectedRecordType("DATALOGFILE", lastProcessedRecordTypeMap.get("DATALOGFILE")));
 
-                    Map<String, Long> s3FileTypeOffsetMap = new HashMap<>();
+                    Map<String, String> s3FileTypeOffsetMap = new HashMap<>();
                     s3FileTypeOffsetMap.putAll(metadataLogFileReader.getOffset());
                     s3FileTypeOffsetMap.putAll(dataLogFileReader.getOffset());
 
@@ -831,7 +831,7 @@ Here is a sample MultipleFileStateMachineReader implementation - the SingleFileP
                 s3FileTypeNextRecordTypeMap.putAll(metadataLogFileReader.getNextExpectedRecordType("METADATALOGFILE", lastProcessedRecordTypeMap.get("METADATALOGFILE")));
                 s3FileTypeNextRecordTypeMap.putAll(dataLogFileReader.getNextExpectedRecordType("DATALOGFILE", lastProcessedRecordTypeMap.get("DATALOGFILE")));
 
-                Map<String, Long> s3FileTypeOffsetMap = new HashMap<>();
+                Map<String, String> s3FileTypeOffsetMap = new HashMap<>();
                 s3FileTypeOffsetMap.putAll(metadataLogFileReader.getOffset());
                 s3FileTypeOffsetMap.putAll(dataLogFileReader.getOffset());
 

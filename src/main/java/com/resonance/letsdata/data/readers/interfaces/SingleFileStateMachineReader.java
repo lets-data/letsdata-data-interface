@@ -132,7 +132,7 @@ public interface SingleFileStateMachineReader {
      *                       Map&lt;String, String&gt; s3FileTypeNextRecordTypeMap = new HashMap&lt;&gt;();
      *                       s3FileTypeNextRecordTypeMap.put(s3FileType, null);
      *
-     *                       Map&lt;String, Long&gt; s3FileTypeOffsetMap = new HashMap&lt;&gt;();
+     *                       Map&lt;String, String&gt; s3FileTypeOffsetMap = new HashMap&lt;&gt;();
      *                       s3FileTypeOffsetMap.putAll(fileReader.getOffset());
      *
      *                       Map&lt;String, String&gt; lastProcessedRecordTypeMap = fileReader.getLastRecordTypeMap();
@@ -174,7 +174,7 @@ public interface SingleFileStateMachineReader {
      *                       Map&lt;String, String&gt; lastProcessedRecordTypeMap = fileReader.getLastRecordTypeMap();
      *                       Map&lt;String, String&gt; nextRecordTypeMap = fileReader.getNextExpectedRecordType(s3FileType, lastProcessedRecordTypeMap.get(s3FileType));
      *
-     *                       Map&lt;String, Long&gt; s3FileTypeOffsetMap = new HashMap&lt;&gt;();
+     *                       Map&lt;String, String&gt; s3FileTypeOffsetMap = new HashMap&lt;&gt;();
      *                       s3FileTypeOffsetMap.putAll(fileReader.getOffset());
      *
      *                       LinkedHashMap&lt;SingleDocInterface, List&lt;ErrorDocInterface&gt;&gt; docMap = new LinkedHashMap&lt;&gt;();
@@ -200,7 +200,7 @@ public interface SingleFileStateMachineReader {
      *                   Map&lt;String, String&gt; lastProcessedRecordTypeMap = fileReader.getLastRecordTypeMap();
      *                   Map&lt;String, String&gt; nextRecordTypeMap = fileReader.getNextExpectedRecordType(s3FileType, lastProcessedRecordTypeMap.get(s3FileType));
      *
-     *                   Map&lt;String, Long&gt; s3FileTypeOffsetMap = new HashMap&lt;&gt;();
+     *                   Map&lt;String, String&gt; s3FileTypeOffsetMap = new HashMap&lt;&gt;();
      *                   s3FileTypeOffsetMap.putAll(fileReader.getOffset());
      *                   return new ParseCompositeDocumentResult(nextRecordTypeMap, compositeDoc, lastProcessedRecordTypeMap, s3FileTypeOffsetMap, SingleFileReaderState.PROCESSING, ParseDocumentResultStatus.SUCCESS);
      *               }

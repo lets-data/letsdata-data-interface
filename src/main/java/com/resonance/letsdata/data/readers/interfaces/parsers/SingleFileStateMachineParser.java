@@ -214,10 +214,10 @@ public interface SingleFileStateMachineParser {
      *                        logger.error("Exception in parseDocument for METADATA record - recordType: "+nextRecordType+", ex: "+exception);
      *
      *                        String nextRecordTypeForExtractedRecord = getNextExpectedRecordType(s3FileType, nextRecordType);
-     *                        Map&lt;String, Long&gt; startOffset = new HashMap&lt;&gt;();
-     *                        startOffset.put(s3FileType, offsetBytes);
-     *                        Map&lt;String, Long&gt; endOffset = new HashMap&lt;&gt;();
-     *                        endOffset.put(s3FileType, offsetBytes+(endIndex-startIndex));
+     *                        Map&lt;String, String&gt; startOffset = new HashMap&lt;&gt;();
+     *                        startOffset.put(s3FileType, Long.toString(offsetBytes));
+     *                        Map&lt;String, String&gt; endOffset = new HashMap&lt;&gt;();
+     *                        endOffset.put(s3FileType, Long.toString(offsetBytes+(endIndex-startIndex)));
      *                        String errorMessage = "Exception in parseDocument for METADATA record - recordType: "+nextRecordType+", ex: "+exception;
      *                        String documentId = null;
      *                        String recordType = null;
@@ -236,10 +236,10 @@ public interface SingleFileStateMachineParser {
      *                        logger.error("Exception in parseDocument for DATA record - recordType: "+nextRecordType+", ex: "+exception);
      *
      *                        String nextRecordTypeForExtractedRecord = getNextExpectedRecordType(s3FileType, nextRecordType);
-     *                        Map&lt;String, Long&gt; startOffset = new HashMap&lt;&gt;();
-     *                        startOffset.put(s3FileType, offsetBytes);
-     *                        Map&lt;String, Long&gt; endOffset = new HashMap&lt;&gt;();
-     *                        endOffset.put(s3FileType, offsetBytes+(endIndex-startIndex));
+     *                        Map&lt;String, String&gt; startOffset = new HashMap&lt;&gt;();
+     *                        startOffset.put(s3FileType, Long.toString(offsetBytes));
+     *                        Map&lt;String, String&gt; endOffset = new HashMap&lt;&gt;();
+     *                        endOffset.put(s3FileType, Long.toString(offsetBytes+(endIndex-startIndex)));
      *                        String errorMessage = "Exception in parseDocument for DATA record - recordType: "+nextRecordType+", ex: "+exception;
      *                        String documentId = null;
      *                        String recordType = null;

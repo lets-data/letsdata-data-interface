@@ -112,10 +112,10 @@ public interface SingleFileParser {
      *      int errorLevelIndex = Matcher.match(byteArr, startIndex, endIndex, "\"lvl\":\"ERROR\"");
      *      if (errorLevelIndex == -1) {
      *          // skip since we are interested only in ERROR records
-     *          Map&lt;String, Long&gt; startOffset = new HashMap&lt;&gt;();
-     *          startOffset.put(s3FileType, offsetBytes);
-     *          Map&lt;String, Long&gt; endOffset = new HashMap&lt;&gt;();
-     *          endOffset.put(s3FileType, offsetBytes);
+     *          Map&lt;String, String&gt; startOffset = new HashMap&lt;&gt;();
+     *          startOffset.put(s3FileType, Long.toString(offsetBytes));
+     *          Map&lt;String, String&gt; endOffset = new HashMap&lt;&gt;();
+     *          endOffset.put(s3FileType, Long.toString(offsetBytes));
      *          String errorMessage = "skipping message - level is not ERROR";
      *          String documentId = null;
      *          String recordType = null;
@@ -134,10 +134,10 @@ public interface SingleFileParser {
      *              return new ParseDocumentResult(null, doc, ParseDocumentResultStatus.SUCCESS);
      *          } catch (Exception e) {
      *              logger.error("error processing json document from file", s3FileType, s3Filename, offsetBytes, e);
-     *              Map&lt;String, Long&gt; startOffset = new HashMap&lt;&gt;();
-     *              startOffset.put(s3FileType, offsetBytes);
-     *              Map&lt;String, Long&gt; endOffset = new HashMap&lt;&gt;();
-     *              endOffset.put(s3FileType, offsetBytes);
+     *              Map&lt;String, String&gt; startOffset = new HashMap&lt;&gt;();
+     *              startOffset.put(s3FileType, Long.toString(offsetBytes));
+     *              Map&lt;String, String&gt; endOffset = new HashMap&lt;&gt;();
+     *              endOffset.put(s3FileType, Long.toString(offsetBytes));
      *              String errorMessage = "error processing json document from file - ex: "+e;
      *              String documentId = null;
      *              String recordType = null;
