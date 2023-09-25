@@ -10,11 +10,11 @@ public class ParseCompositeDocumentResult {
     private final Map<String, String> s3FileTypeNextRecordTypeMap;
     private final CompositeDocInterface document;
     private final Map<String, String> s3FileTypeLastProcessedRecordType;
-    private final Map<String, Long> s3FileTypeOffsets;
+    private final Map<String, String> s3FileTypeOffsets;
     private final SingleFileReaderState fileReaderState;
     private final ParseDocumentResultStatus parseDocumentResultStatus;
 
-    public ParseCompositeDocumentResult(Map<String, String> s3FileTypeNextRecordTypeMap, CompositeDocInterface document, Map<String, String> s3FileTypeLastProcessedRecordType, Map<String, Long> s3FileTypeOffsets, SingleFileReaderState fileReaderState, ParseDocumentResultStatus parseDocumentResultStatus) {
+    public ParseCompositeDocumentResult(Map<String, String> s3FileTypeNextRecordTypeMap, CompositeDocInterface document, Map<String, String> s3FileTypeLastProcessedRecordType, Map<String, String> s3FileTypeOffsets, SingleFileReaderState fileReaderState, ParseDocumentResultStatus parseDocumentResultStatus) {
         this.s3FileTypeNextRecordTypeMap = s3FileTypeNextRecordTypeMap;
         this.document = document;
         this.s3FileTypeLastProcessedRecordType = s3FileTypeLastProcessedRecordType;
@@ -74,7 +74,7 @@ public class ParseCompositeDocumentResult {
         return s3FileTypeLastProcessedRecordType;
     }
 
-    public Map<String, Long> getS3FileTypeOffsets() {
+    public Map<String, String> getS3FileTypeOffsets() {
         return s3FileTypeOffsets;
     }
 

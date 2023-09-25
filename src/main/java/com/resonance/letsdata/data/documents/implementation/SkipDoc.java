@@ -27,13 +27,13 @@ public class SkipDoc implements SkipDocInterface {
      * The start offset into the file for the error record in bytes
      * Map of fileType to file offset in bytes
      */
-    private final Map<String, Long> startOffset;
+    private final Map<String, String> startOffset;
 
     /**
      * The end offset into the file for the error record in bytes
      * Map of fileType to file offset in bytes
      */
-    private final Map<String, Long> endOffset;
+    private final Map<String, String> endOffset;
 
     /**
      * The skip message
@@ -65,7 +65,7 @@ public class SkipDoc implements SkipDocInterface {
      * @param serialize - The serialized string representation of the skip record
      * @param partitionKey - Identifier to identify the partition key of the record
      */
-    public SkipDoc(Map<String, Long> startOffset, Map<String, Long> endOffset, String skipMessage, String documentId, String recordType, Map<String, Object> documentMetadata, String serialize, String partitionKey) {
+    public SkipDoc(Map<String, String> startOffset, Map<String, String> endOffset, String skipMessage, String documentId, String recordType, Map<String, Object> documentMetadata, String serialize, String partitionKey) {
         this.startOffset = startOffset;
         this.endOffset = endOffset;
         this.skipMessage = skipMessage;
@@ -81,7 +81,7 @@ public class SkipDoc implements SkipDocInterface {
      * @return - Map of fileType to file offset in bytes
      */
     @Override
-    public Map<String, Long> getErrorStartOffsetMap() {
+    public Map<String, String> getErrorStartOffsetMap() {
         return startOffset;
     }
 
@@ -90,7 +90,7 @@ public class SkipDoc implements SkipDocInterface {
      * @return - Map of fileType to file offset in bytes
      */
     @Override
-    public Map<String, Long> getErrorEndOffsetMap() {
+    public Map<String, String> getErrorEndOffsetMap() {
         return endOffset;
     }
 

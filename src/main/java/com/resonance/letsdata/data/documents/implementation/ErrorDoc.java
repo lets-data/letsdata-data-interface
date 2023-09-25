@@ -25,13 +25,13 @@ public class ErrorDoc implements ErrorDocInterface {
      * The start offset into the file for the error record in bytes
      * Map of fileType to file offset in bytes
      */
-    private final Map<String, Long> startOffset;
+    private final Map<String, String> startOffset;
 
     /**
      * The end offset into the file for the error record in bytes
      * Map of fileType to file offset in bytes
      */
-    private final Map<String, Long> endOffset;
+    private final Map<String, String> endOffset;
 
     /**
      * The error message
@@ -64,7 +64,7 @@ public class ErrorDoc implements ErrorDocInterface {
      * @param serialize - The serialized string representation of the error record
      * @param partitionKey - Identifier to identify the partition key of the record
      */
-    public ErrorDoc(Map<String, Long> startOffset, Map<String, Long> endOffset, String errorMessage, String documentId, String recordType, Map<String, Object> documentMetadata, String serialize, String partitionKey) {
+    public ErrorDoc(Map<String, String> startOffset, Map<String, String> endOffset, String errorMessage, String documentId, String recordType, Map<String, Object> documentMetadata, String serialize, String partitionKey) {
         this.startOffset = startOffset;
         this.endOffset = endOffset;
         this.errorMessage = errorMessage;
@@ -80,7 +80,7 @@ public class ErrorDoc implements ErrorDocInterface {
      * @return Map of fileType to file offset in bytes
      */
     @Override
-    public Map<String, Long> getErrorStartOffsetMap() {
+    public Map<String, String> getErrorStartOffsetMap() {
         return startOffset;
     }
 
@@ -89,7 +89,7 @@ public class ErrorDoc implements ErrorDocInterface {
      * @return Map of fileType to file offset in bytes
      */
     @Override
-    public Map<String, Long> getErrorEndOffsetMap() {
+    public Map<String, String> getErrorEndOffsetMap() {
         return endOffset;
     }
 
